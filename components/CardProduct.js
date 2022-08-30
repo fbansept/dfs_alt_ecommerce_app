@@ -1,11 +1,13 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import React from 'react';
 import Colors from '../Colors';
 
-const CardProduct = ({title}) => {
+const CardProduct = ({title, thumbnail}) => {
   return (
     <View style={[styles.card, styles.shadow]}>
-      <View style={styles.imageCard}></View>
+      <View style={styles.imageCard}>
+        <ImageBackground style={styles.image} source={{uri: thumbnail}} />
+      </View>
       <View style={styles.contentCard}>
         <Text style={styles.titleCard}>{title}</Text>
       </View>
@@ -14,6 +16,11 @@ const CardProduct = ({title}) => {
 };
 
 const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
   imageCard: {
     width: 150,
     backgroundColor: '#EEE',

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -13,14 +14,27 @@ import CardProduct from './components/CardProduct';
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const [listeProduit, setListeProduit] = useState([]);
+
+  useEffect(() => {
+    fetch('https://dummyjson.com/products')
+      .then(json => json.json())
+      .then(resultat => {
+        setListeProduit(resultat.products);
+      });
+  }, []);
+
   return (
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
+        {listeProduit.map(produit => (
+          <CardProduct
+            key={produit.id}
+            title={produit.title}
+            thumbnail={produit.thumbnail}
+          />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
