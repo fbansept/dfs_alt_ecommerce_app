@@ -1,6 +1,7 @@
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import React from 'react';
 import Colors from '../Colors';
+import {Rating} from 'react-native-elements';
 
 const CardProduct = ({title, thumbnail, description}) => {
   return (
@@ -10,6 +11,7 @@ const CardProduct = ({title, thumbnail, description}) => {
       </View>
       <View style={styles.contentCard}>
         <Text style={styles.titleCard}>{title}</Text>
+        <Rating startingValue={3} readOnly imageSize={20} />
         <Text
           numberOfLines={3}
           ellipsizeMode="tail"
