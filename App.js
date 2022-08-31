@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Home from './screens/Home';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -29,7 +30,7 @@ const App = () => {
         <Tab.Navigator>
           <Tab.Screen
             name="Home"
-            component={ProductList}
+            component={Home}
             options={{
               tabBarLabel: 'Home',
               tabBarIcon: ({color}) => (
