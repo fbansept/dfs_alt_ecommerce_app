@@ -3,7 +3,16 @@ import React from 'react';
 import Colors from '../Colors';
 import {Rating} from 'react-native-elements';
 
-const CardProduct = ({title, thumbnail, description, rating}) => {
+const CardProduct = ({
+  title,
+  thumbnail,
+  description,
+  rating,
+  price,
+  discountPercentage,
+}) => {
+  const newPrice = Math.round(price - (price * discountPercentage) / 100);
+
   return (
     <View style={[styles.card, styles.shadow]}>
       <View style={styles.imageCard}>
@@ -19,8 +28,8 @@ const CardProduct = ({title, thumbnail, description, rating}) => {
           {description}
         </Text>
         <View style={styles.row}>
-          <Text style={styles.newPrice}>100€</Text>
-          <Text style={styles.oldPrice}>150€</Text>
+          <Text style={styles.newPrice}>{newPrice}€</Text>
+          <Text style={styles.oldPrice}>{price}€</Text>
         </View>
       </View>
     </View>

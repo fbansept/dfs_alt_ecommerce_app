@@ -35,6 +35,8 @@ const App = () => {
             thumbnail={produit.thumbnail}
             description={produit.description}
             rating={produit.rating}
+            price={produit.price}
+            discountPercentage={produit.discountPercentage}
           />
         ))}
       </ScrollView>
