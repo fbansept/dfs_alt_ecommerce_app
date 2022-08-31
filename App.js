@@ -33,6 +33,7 @@ const App = () => {
             key={produit.id}
             title={produit.title}
             thumbnail={produit.thumbnail}
+            description={produit.description}
           />
         ))}
       </ScrollView>
