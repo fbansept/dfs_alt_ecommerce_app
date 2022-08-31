@@ -1,3 +1,8 @@
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import ProductList from './screens/ProductList';
+import Cart from './screens/Cart';
+import Profil from './screens/Profil';
 import React, {useEffect, useState} from 'react';
 import {
   Pressable,
@@ -9,38 +14,24 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import CardProduct from './components/CardProduct';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const [listeProduit, setListeProduit] = useState([]);
-
-  useEffect(() => {
-    fetch('https://dummyjson.com/products')
-      .then(json => json.json())
-      .then(resultat => {
-        setListeProduit(resultat.products);
-      });
-  }, []);
+  const Tab = createMaterialBottomTabNavigator();
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        {listeProduit.map(produit => (
-          <CardProduct
-            key={produit.id}
-            title={produit.title}
-            thumbnail={produit.thumbnail}
-            description={produit.description}
-            rating={produit.rating}
-            price={produit.price}
-            discountPercentage={produit.discountPercentage}
-          />
-        ))}
-      </ScrollView>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={ProductList} />
+          <Tab.Screen name="Cart" component={Cart} />
+          <Tab.Screen name="Profil" component={Profil} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
