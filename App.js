@@ -34,6 +34,7 @@ const App = () => {
             title={produit.title}
             thumbnail={produit.thumbnail}
             description={produit.description}
+            rating={produit.rating}
           />
         ))}
       </ScrollView>

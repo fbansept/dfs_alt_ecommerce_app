@@ -3,7 +3,7 @@ import React from 'react';
 import Colors from '../Colors';
 import {Rating} from 'react-native-elements';
 
-const CardProduct = ({title, thumbnail, description}) => {
+const CardProduct = ({title, thumbnail, description, rating}) => {
   return (
     <View style={[styles.card, styles.shadow]}>
       <View style={styles.imageCard}>
@@ -11,19 +11,37 @@ const CardProduct = ({title, thumbnail, description}) => {
       </View>
       <View style={styles.contentCard}>
         <Text style={styles.titleCard}>{title}</Text>
-        <Rating startingValue={3} readOnly imageSize={20} />
+        <Rating startingValue={rating} readOnly imageSize={20} />
         <Text
           numberOfLines={3}
           ellipsizeMode="tail"
           style={styles.descriptionCard}>
           {description}
         </Text>
+        <View style={styles.row}>
+          <Text style={styles.newPrice}>100€</Text>
+          <Text style={styles.oldPrice}>150€</Text>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  newPrice: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  oldPrice: {
+    fontSize: 20,
+    textDecorationLine: 'line-through',
+    textDecorationStyle: 'solid',
+  },
   descriptionCard: {
     fontFamily: 'Comfortaa Medium',
     fontSize: 16,
