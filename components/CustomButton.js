@@ -3,9 +3,9 @@ import React from 'react';
 import Colors from '../Colors';
 import GlobalStyles from '../GlobalStyles';
 
-const CustomButton = ({children, onPress}) => {
+const CustomButton = ({children, onPress, style}) => {
   return (
-    <View>
+    <View style={style}>
       <TouchableOpacity
         onPress={onPress}
         style={[styles.button, GlobalStyles.shadow]}>
