@@ -1,10 +1,13 @@
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
+import CustomButton from '../components/CustomButton';
 
 const Profil = () => {
   return (
     <View>
-      <Text>Profil</Text>
+      <CustomButton onPress={() => console.log('test')}>
+        Ajouter une photo de profil
+      </CustomButton>
     </View>
   );
 };

@@ -27,7 +27,7 @@ const App = () => {
     <SafeAreaProvider>
       <NavigationContainer>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <Tab.Navigator>
+        <Tab.Navigator initialRouteName="Profil">
           <Tab.Screen
             name="Home"
             component={Home}

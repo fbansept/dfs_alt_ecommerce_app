@@ -2,6 +2,7 @@ import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import React from 'react';
 import Colors from '../Colors';
 import {Rating} from 'react-native-elements';
+import GlobalStyles from '../GlobalStyles';
 
 const CardProduct = ({
   title,
@@ -14,7 +15,7 @@ const CardProduct = ({
   const newPrice = Math.round(price - (price * discountPercentage) / 100);
 
   return (
-    <View style={[styles.card, styles.shadow]}>
+    <View style={[styles.card, GlobalStyles.shadow]}>
       <View style={styles.imageCard}>
         <ImageBackground style={styles.image} source={{uri: thumbnail}} />
       </View>
@@ -27,7 +28,7 @@ const CardProduct = ({
           style={styles.descriptionCard}>
           {description}
         </Text>
-        <View style={styles.row}>
+        <View style={GlobalStyles.row}>
           <Text style={styles.newPrice}>{newPrice}€</Text>
           <Text style={styles.oldPrice}>{price}€</Text>
         </View>
@@ -37,11 +38,6 @@ const CardProduct = ({
 };
 
 const styles = StyleSheet.create({
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   newPrice: {
     fontSize: 30,
     fontWeight: 'bold',
@@ -86,16 +82,6 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 5,
     backgroundColor: Colors.white,
-  },
-  shadow: {
-    elevation: 2,
-    shadowColor: Colors.black,
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
   },
 });
 
