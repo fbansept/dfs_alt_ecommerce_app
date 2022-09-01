@@ -1,6 +1,7 @@
-import {Modal, StyleSheet, Text, View} from 'react-native';
+import {Alert, Linking, Modal, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import CustomButton from '../components/CustomButton';
+import {Camera} from 'react-native-vision-camera';
 
 const Profil = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -16,7 +17,19 @@ const Profil = () => {
           </CustomButton>
           <CustomButton
             style={{marginBottom: 10}}
-            onPress={() => setModalVisible(false)}>
+            onPress={async () => {
+              let permission = await Camera.getCameraPermissionStatus();
+
+              if (permission === 'authorized') {
+                Alert.alert('TDODO affichage caméra');
+              } else {
+                permission = await Camera.requestCameraPermission();
+
+                if (permission === 'denied') {
+                  Linking.openSettings();
+                }
+              }
+            }}>
             Prendre une photo
           </CustomButton>
           <CustomButton onPress={() => setModalVisible(false)}>
