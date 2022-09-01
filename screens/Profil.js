@@ -1,55 +1,20 @@
-import {Alert, Linking, Modal, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
-import CustomButton from '../components/CustomButton';
-import {Camera} from 'react-native-vision-camera';
+import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import EditProfil from './EditProfil';
+import CameraView from './CameraView';
 
 const Profil = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View>
-      <Modal animationType="slide" visible={modalVisible} transparent={false}>
-        <View style={styles.modal}>
-          <CustomButton
-            style={{marginBottom: 10}}
-            onPress={() => setModalVisible(false)}>
-            Selectionner une photo de votre appareil
-          </CustomButton>
-          <CustomButton
-            style={{marginBottom: 10}}
-            onPress={async () => {
-              let permission = await Camera.getCameraPermissionStatus();
-
-              if (permission === 'authorized') {
-                Alert.alert('TDODO affichage caméra');
-              } else {
-                permission = await Camera.requestCameraPermission();
-
-                if (permission === 'denied') {
-                  Linking.openSettings();
-                }
-              }
-            }}>
-            Prendre une photo
-          </CustomButton>
-          <CustomButton onPress={() => setModalVisible(false)}>
-            Annuler
-          </CustomButton>
-        </View>
-      </Modal>
-      <CustomButton onPress={() => setModalVisible(true)}>
-        Ajouter une photo de profil
-      </CustomButton>
-    </View>
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen name="Edit profil" component={EditProfil} />
+        <Stack.Screen name="Take photo" component={CameraView} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  modal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default Profil;
